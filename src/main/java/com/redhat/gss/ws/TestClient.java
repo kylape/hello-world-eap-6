@@ -13,16 +13,18 @@ import org.jboss.logging.Logger;
 import java.util.Collections;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.ws.spi.Provider;
+
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 
 public class TestClient {
   private Logger log = Logger.getLogger(this.getClass().getName());
 
-  public static void main(String[] args) throws Exception {
-    TestClient client = new TestClient();
-    client.invoke();
-  }
-
-  public void invoke() throws Exception {
+  @Test
+  public void testEndpoint() throws Exception {
     URL wsdl        = new URL("http://localhost:8080/hello-world/TestService?wsdl");
     QName serviceNS = new QName("http://ws.gss.redhat.com/", "TestServiceService");
     QName portNS    = new QName("http://ws.gss.redhat.com/", "TestServicePort");
@@ -30,13 +32,18 @@ public class TestClient {
     Service service = Service.create(wsdl, serviceNS);
     HelloWorld port = service.getPort(portNS, HelloWorld.class);
 
-    try {
-      log.info("Invoking sayHello with user klape...");
-      port.sayHello(Collections.singletonList("Kyle"));
-      log.debug("Success: Invocation succeeded");
+    List<String> argArray = Collections.singletonList("Kyle");
+    List<String> returnedArray = port.sayHello(argArray);
+    assertEquals("Return value not equal to request arg", argArray.size(), returnedArray.size());
+    for(int i=0; i<argArray.size(); i++) {
+      assertEquals("Return value not equal to request arg", "Hello, " + argArray.get(i), returnedArray.get(i));
     }
-    catch(Exception e) {
-      log.error("***FAIL: Invocation did not succed when it should have");
-    }
+  }
+
+  @Test
+  public void testProvider() {
+    Provider p = Provider.provider();
+    String pName = p.getClass().getName();
+    assertEquals("JBossWS is not being used: " + pName, "org.jboss.wsf.stack.cxf.client.ProviderImpl", pName);
   }
 }
