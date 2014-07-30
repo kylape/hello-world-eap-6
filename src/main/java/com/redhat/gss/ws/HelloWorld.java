@@ -6,7 +6,7 @@ import java.util.List;
 @javax.jws.WebService(
   targetNamespace="http://ws.gss.redhat.com/"
 )
-public interface WsIntfc {
+public interface HelloWorld {
   @WebMethod
   public List<String> sayHello(List<String> names);
 }

@@ -23,13 +23,13 @@ public class TestClient {
   }
 
   public void invoke() throws Exception {
-    //Create JAX-WS client
     // URL wsdl = new URL("http://localhost:8080/cxf-stax-configure-example/TestService?wsdl");
-    URL wsdl = getClass().getResource("/secureService.wsdl");
+    URL wsdl        = getClass().getResource("/secureService.wsdl");
     QName serviceNS = new QName("http://ws.gss.redhat.com/", "TestServiceService");
-    QName portNS = new QName("http://ws.gss.redhat.com/", "TestServicePort");
+    QName portNS    = new QName("http://ws.gss.redhat.com/", "TestServicePort");
+
     Service service = Service.create(wsdl, serviceNS);
-    WsIntfc port = service.getPort(portNS, WsIntfc.class);
+    HelloWorld port = service.getPort(portNS, HelloWorld.class);
 
     Map<String, Object> ctx = ((BindingProvider)port).getRequestContext();
     ctx.put("org.apache.cxf.stax.maxChildElements", "10000000");
