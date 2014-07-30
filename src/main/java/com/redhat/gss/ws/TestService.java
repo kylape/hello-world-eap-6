@@ -13,11 +13,7 @@ import org.jboss.logging.Logger;
 import org.jboss.ws.api.annotation.EndpointConfig;
 
 @WebService(endpointInterface="com.redhat.gss.ws.HelloWorld")
-// @Logging(pretty=true)
-@EndpointProperties({
-  @EndpointProperty(key="org.apache.cxf.stax.maxTextLength", value="10000000"),
-  @EndpointProperty(key="org.apache.cxf.stax.maxChildElements", value="10000000")
-})
+@Logging(pretty=true)
 public class TestService implements HelloWorld {
   private static Logger log = Logger.getLogger(TestService.class);
 

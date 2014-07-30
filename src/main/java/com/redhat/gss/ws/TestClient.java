@@ -23,25 +23,16 @@ public class TestClient {
   }
 
   public void invoke() throws Exception {
-    // URL wsdl = new URL("http://localhost:8080/cxf-stax-configure-example/TestService?wsdl");
-    URL wsdl        = getClass().getResource("/secureService.wsdl");
+    URL wsdl        = new URL("http://localhost:8080/hello-world/TestService?wsdl");
     QName serviceNS = new QName("http://ws.gss.redhat.com/", "TestServiceService");
     QName portNS    = new QName("http://ws.gss.redhat.com/", "TestServicePort");
 
     Service service = Service.create(wsdl, serviceNS);
     HelloWorld port = service.getPort(portNS, HelloWorld.class);
 
-    Map<String, Object> ctx = ((BindingProvider)port).getRequestContext();
-    ctx.put("org.apache.cxf.stax.maxChildElements", "10000000");
-
     try {
-      log.info("Generating names...");
-      List<String> names = new ArrayList<String>();
-      for(int i=0; i<50001; i++) {
-        names.add("Kyle");
-      }
       log.info("Invoking sayHello with user klape...");
-      port.sayHello(names);
+      port.sayHello(Collections.singletonList("Kyle"));
       log.debug("Success: Invocation succeeded");
     }
     catch(Exception e) {
