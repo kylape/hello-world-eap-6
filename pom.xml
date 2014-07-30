@@ -22,7 +22,9 @@
     </dependencies>
   </dependencyManagement>
   <modules>
+    <module>ejb</module>
     <module>endpoint</module>
+    <module>ear</module>
     <!-- <module>integration-tests</module> -->
   </modules>
 </project>
