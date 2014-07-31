@@ -15,8 +15,13 @@ import org.jboss.ws.api.annotation.EndpointConfig;
 
 import com.redhat.gss.ejb.SayHi;
 
-@WebService(endpointInterface="com.redhat.gss.ws.HelloWorld")
+@WebService(endpointInterface="com.redhat.gss.ws.HelloWorld", wsdlLocation="WEB-INF/wsdl/testService.wsdl")
 @Logging(pretty=true)
+@EndpointConfig(configFile = "WEB-INF/jaxws-endpoint-config.xml", configName = "Custom WS-Security Endpoint")
+@InInterceptors(interceptors = {
+  "org.jboss.wsf.stack.cxf.security.authentication.SubjectCreatingPolicyInterceptor"
+  // "com.redhat.gss.wss.MyAuthorizationInterceptor"
+})
 public class TestService implements HelloWorld {
   private static Logger log = Logger.getLogger(TestService.class);
   

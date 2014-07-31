@@ -31,6 +31,9 @@ public class TestClient {
 
     Service service = Service.create(wsdl, serviceNS);
     HelloWorld port = service.getPort(portNS, HelloWorld.class);
+    Map<String, Object> ctx = ((BindingProvider)port).getRequestContext();
+    ctx.put("ws-security.username", "klape");
+    ctx.put("ws-security.password", "RedHat13#");
 
     List<String> argArray = Collections.singletonList("Kyle");
     List<String> returnedArray = port.sayHello(argArray);
