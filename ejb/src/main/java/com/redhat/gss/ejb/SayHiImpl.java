@@ -6,7 +6,7 @@ import org.jboss.ejb3.annotation.SecurityDomain;
 
 @javax.ejb.Stateless
 @javax.jws.WebService
-@RolesAllowed("hello")
+@RolesAllowed("hi")
 @SecurityDomain("other")
 public class SayHiImpl implements SayHi {
   private static Logger log = Logger.getLogger(SayHiImpl.class);

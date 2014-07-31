@@ -6,7 +6,7 @@
       <module name="org.apache.cxf.impl"/>
     </dependencies>
   </deployment>
-  <sub-deployment name="hello-world-endpoint-1.0-SNAPSHOT.war">
+  <sub-deployment name="hello-world-endpoint-1.0-SNAPSHOT.jar">
     <dependencies>
       <module name="org.apache.cxf"/>
       <module name="org.apache.cxf.impl"/>
