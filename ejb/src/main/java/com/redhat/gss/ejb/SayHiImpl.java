@@ -5,7 +5,7 @@ import org.jboss.logging.Logger;
 
 @javax.ejb.Stateless
 @javax.jws.WebService
-@RolesAllowed("helloa")
+@RolesAllowed("hello")
 public class SayHiImpl implements SayHi {
   private static Logger log = Logger.getLogger(SayHiImpl.class);
 
