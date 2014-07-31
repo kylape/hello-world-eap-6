@@ -2,10 +2,12 @@ package com.redhat.gss.ejb;
 
 import javax.annotation.security.RolesAllowed;
 import org.jboss.logging.Logger;
+import org.jboss.ejb3.annotation.SecurityDomain;
 
 @javax.ejb.Stateless
 @javax.jws.WebService
 @RolesAllowed("hello")
+@SecurityDomain("other")
 public class SayHiImpl implements SayHi {
   private static Logger log = Logger.getLogger(SayHiImpl.class);
 
