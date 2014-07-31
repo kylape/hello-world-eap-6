@@ -25,7 +25,8 @@ public class TestClient {
 
   @Test
   public void testEndpoint() throws Exception {
-    URL wsdl        = new URL("http://localhost:8080/hello-world/TestService?wsdl");
+    // URL wsdl        = new URL("http://localhost:8080/hello-world/TestService?wsdl");
+    URL wsdl        = getClass().getResource("/testService.wsdl");
     QName serviceNS = new QName("http://ws.gss.redhat.com/", "TestServiceService");
     QName portNS    = new QName("http://ws.gss.redhat.com/", "TestServicePort");
 
