@@ -2,10 +2,30 @@
 <jaxws-config xmlns="urn:jboss:jbossws-jaxws-config:4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:javaee="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="urn:jboss:jbossws-jaxws-config:4.0 schema/jbossws-jaxws-config_4_0.xsd">
   <endpoint-config>
-    <config-name>Custom WS-Security Endpoint</config-name>
-    <property>
-      <property-name>ws-security.validate.token</property-name>
-      <property-value>false</property-value>
-    </property>
+    <config-name>Custom Handlers</config-name>
+    <pre-handler-chains>
+      <javaee:handler-chain>
+        <javaee:handler>
+          <javaee:handler-name>A</javaee:handler-name>
+          <javaee:handler-class>com.redhat.gss.handler.HandlerA</javaee:handler-class>
+        </javaee:handler>
+        <javaee:handler>
+          <javaee:handler-name>B</javaee:handler-name>
+          <javaee:handler-class>com.redhat.gss.handler.HandlerB</javaee:handler-class>
+        </javaee:handler>
+      </javaee:handler-chain>
+    </pre-handler-chains>
+    <post-handler-chains>
+      <javaee:handler-chain>
+        <javaee:handler>
+          <javaee:handler-name>E</javaee:handler-name>
+          <javaee:handler-class>com.redhat.gss.handler.HandlerE</javaee:handler-class>
+        </javaee:handler>
+        <javaee:handler>
+          <javaee:handler-name>F</javaee:handler-name>
+          <javaee:handler-class>com.redhat.gss.handler.HandlerF</javaee:handler-class>
+        </javaee:handler>
+      </javaee:handler-chain>
+    </post-handler-chains>
   </endpoint-config>
 </jaxws-config>
