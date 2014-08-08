@@ -13,7 +13,7 @@ import org.jboss.logging.Logger;
 import org.jboss.ws.api.annotation.EndpointConfig;
 import javax.jws.HandlerChain;
 
-@WebService(endpointInterface="com.redhat.gss.ws.HelloWorld", wsdlLocation="WEB-INF/wsdl/the.wsdl")
+@WebService(endpointInterface="com.redhat.gss.ws.HelloWorld", wsdlLocation="WEB-INF/wsdl/the.wsdl", portName="TestServicePort", serviceName="TestServiceService")
 @EndpointConfig(configName="Custom Handlers", configFile="WEB-INF/jaxws-endpoint-config.xml")
 @HandlerChain(file="/endpoint-handlers.xml")
 @Logging(pretty=true)
