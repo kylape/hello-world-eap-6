@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.jws.WebService;
 import javax.ejb.EJB;
+import javax.inject.Inject;
 
 import org.apache.cxf.annotations.EndpointProperties;
 import org.apache.cxf.annotations.EndpointProperty;
@@ -25,6 +26,7 @@ public class TestService implements HelloWorld {
   @EJB
   private SayHi hi;
 
+  @Inject
   @Green
   private Color color;
 
