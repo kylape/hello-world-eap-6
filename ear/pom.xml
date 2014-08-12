@@ -23,6 +23,13 @@
       <groupId>com.redhat.gss</groupId>
       <artifactId>say-hi-ejb</artifactId>
       <version>1.0-SNAPSHOT</version>
+      <type>ejb</type>
+    </dependency>
+    <dependency>
+      <groupId>com.redhat.gss</groupId>
+      <artifactId>say-hi-api</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>ejb</type>
     </dependency>
   </dependencies>
   <build>
@@ -39,6 +46,14 @@
         <version>2.9.1</version>
         <configuration>
            <modules>
+             <ejbModule>
+               <groupId>com.redhat.gss</groupId>
+               <artifactId>say-hi-api</artifactId>
+             </ejbModule>
+             <ejbModule>
+               <groupId>com.redhat.gss</groupId>
+               <artifactId>say-hi-ejb</artifactId>
+             </ejbModule>
              <webModule>
                <groupId>com.redhat.gss</groupId>
                <artifactId>hello-world-endpoint</artifactId>

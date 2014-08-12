@@ -22,6 +22,7 @@
     </dependencies>
   </dependencyManagement>
   <modules>
+    <module>api</module>
     <module>ejb</module>
     <module>endpoint</module>
     <module>ear</module>

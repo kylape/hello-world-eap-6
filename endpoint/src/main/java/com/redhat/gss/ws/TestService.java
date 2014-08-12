@@ -14,6 +14,8 @@ import org.jboss.logging.Logger;
 import org.jboss.ws.api.annotation.EndpointConfig;
 
 import com.redhat.gss.ejb.SayHi;
+import com.redhat.gss.cdi.Green;
+import com.redhat.gss.cdi.Color;
 
 @WebService(endpointInterface="com.redhat.gss.ws.HelloWorld")
 @Logging(pretty=true)
@@ -21,9 +23,13 @@ public class TestService implements HelloWorld {
   private static Logger log = Logger.getLogger(TestService.class);
   
   @EJB
-  SayHi hi;
+  private SayHi hi;
+
+  @Green
+  private Color color;
 
   public List<String> sayHello(List<String> names) {
+    log.warn("Color: " + color.getColor());
     hi.sayHi(names.get(0));
     List<String> greetings = new ArrayList<String>();
     for(String name : names) {
