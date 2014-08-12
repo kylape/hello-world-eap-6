@@ -4,6 +4,7 @@
     <dependencies>
       <module name="org.apache.cxf"/>
       <module name="org.apache.cxf.impl"/>
+      <module name="org.jboss.logmanager"/>
     </dependencies>
   </deployment>
 </jboss-deployment-structure>
