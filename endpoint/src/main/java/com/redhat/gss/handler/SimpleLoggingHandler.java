@@ -9,13 +9,26 @@ public abstract class SimpleLoggingHandler extends GenericSOAPHandler<LogicalMes
   
   private static Logger log = Logger.getLogger("com.redhat.gss.handlers");
 
+  @Override
   public boolean handleInbound(MessageContext ctx) {
     log.info("Inbound:  " + getHandlerName());
     return true;
   }
 
+  @Override
   public boolean handleOutbound(MessageContext ctx) {
     log.info("Outbound: " + getHandlerName());
     return true;
+  }
+
+  @Override
+  public boolean handleFault(MessageContext ctx) {
+    log.info("Fault: " + getHandlerName());
+    return true;
+  }
+
+  @Override
+  public void close(MessageContext ctx) {
+    log.info("Close: " + getHandlerName());
   }
 }
