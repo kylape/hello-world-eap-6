@@ -17,7 +17,7 @@ import org.jboss.ws.api.annotation.EndpointConfig;
 public class TestService implements HelloWorld {
   private static Logger log = Logger.getLogger(TestService.class);
 
-  public List<String> sayHello(List<String> names) {
+  public List<String> sayHello(List<String> names) throws Exception {
     List<String> greetings = new ArrayList<String>();
     for(String name : names) {
       greetings.add("Hello, " + name);

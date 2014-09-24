@@ -23,6 +23,6 @@
   </dependencyManagement>
   <modules>
     <module>endpoint</module>
-    <!-- <module>integration-tests</module> -->
+    <module>client-endpoint</module>
   </modules>
 </project>

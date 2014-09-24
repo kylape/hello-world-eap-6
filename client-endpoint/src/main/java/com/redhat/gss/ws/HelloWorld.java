@@ -8,5 +8,5 @@ import java.util.List;
 )
 public interface HelloWorld {
   @WebMethod
-  public List<String> sayHello(List<String> names) throws Exception;
+  public List<String> sayHello(List<String> names);
 }
