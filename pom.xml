@@ -8,7 +8,7 @@
   <name>JAX-WS Hello World</name>
   <url>http://maven.apache.org</url>
   <properties>
-    <version.eap6>6.2.4.GA</version.eap6>
+    <version.eap6>6.3.0.GA</version.eap6>
   </properties>
   <dependencyManagement>
     <dependencies>

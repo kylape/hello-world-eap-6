@@ -7,25 +7,9 @@
       <javaee:handler-chain>
         <javaee:handler>
           <javaee:handler-name>A</javaee:handler-name>
-          <javaee:handler-class>com.redhat.gss.handler.HandlerA</javaee:handler-class>
-        </javaee:handler>
-        <javaee:handler>
-          <javaee:handler-name>B</javaee:handler-name>
-          <javaee:handler-class>com.redhat.gss.handler.HandlerB</javaee:handler-class>
+          <javaee:handler-class>com.redhat.gss.handler.SimpleLoggingHandler</javaee:handler-class>
         </javaee:handler>
       </javaee:handler-chain>
     </pre-handler-chains>
-    <post-handler-chains>
-      <javaee:handler-chain>
-        <javaee:handler>
-          <javaee:handler-name>E</javaee:handler-name>
-          <javaee:handler-class>com.redhat.gss.handler.HandlerE</javaee:handler-class>
-        </javaee:handler>
-        <javaee:handler>
-          <javaee:handler-name>F</javaee:handler-name>
-          <javaee:handler-class>com.redhat.gss.handler.HandlerF</javaee:handler-class>
-        </javaee:handler>
-      </javaee:handler-chain>
-    </post-handler-chains>
   </endpoint-config>
 </jaxws-config>
