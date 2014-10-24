@@ -12,11 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.namespace.QName;
 import javax.xml.ws.BindingProvider;
 import javax.xml.ws.Service;
+import org.apache.cxf.interceptor.FIStaxInInterceptor;
+import org.apache.cxf.interceptor.FIStaxOutInterceptor;
+import org.apache.cxf.bus.CXFBusImpl;
 import org.apache.cxf.endpoint.Client;
+import org.apache.cxf.feature.FastInfosetFeature;
+import org.apache.cxf.feature.Feature;
 import org.apache.cxf.endpoint.Endpoint;
 import org.apache.cxf.frontend.ClientProxy;
 import org.jboss.logging.Logger;
 import java.io.OutputStream;
+import org.apache.cxf.Bus;
+import java.util.Collection;
 
 @WebServlet({"/client"})
 public class TestServlet extends HttpServlet {
@@ -24,6 +31,13 @@ public class TestServlet extends HttpServlet {
 
   @Override
   public void init() {
+    log.warn("Hey! I'm setting the FastInfoset property now!");
+    Bus bus = org.apache.cxf.BusFactory.getThreadDefaultBus();
+    Collection<Feature> features = bus.getFeatures();
+    FastInfosetFeature fisFeature = new FastInfosetFeature();
+    fisFeature.setForce(true);
+    features.add(fisFeature);
+    ((CXFBusImpl)bus).setFeatures(features);
   }
 
   @Override
@@ -34,6 +48,16 @@ public class TestServlet extends HttpServlet {
 
     Service service = Service.create(wsdl, serviceNS);
     HelloWorld port = service.getPort(portNS, HelloWorld.class);
+
+    Bus bus = ClientProxy.getClient(port).getBus();
+    FIStaxInInterceptor in = new FIStaxInInterceptor();
+    FIStaxOutInterceptor out = new FIStaxOutInterceptor(true);
+    bus.getInInterceptors().add(in);
+    bus.getInFaultInterceptors().add(in);
+    bus.getOutInterceptors().add(out);
+    bus.getOutFaultInterceptors().add(out);
+
+    // ((BindingProvider)port).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, "http://localhost:8083/hello-world/TestService");
 
     List<String> argArray = Collections.singletonList("Kyle");
     long startTime = System.nanoTime();
