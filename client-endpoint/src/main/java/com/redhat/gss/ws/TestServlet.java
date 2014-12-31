@@ -18,7 +18,6 @@ import org.apache.cxf.frontend.ClientProxy;
 import org.jboss.logging.Logger;
 import java.io.OutputStream;
 
-@WebServlet({"/client"})
 public class TestServlet extends HttpServlet {
   private static Logger log = Logger.getLogger(TestServlet.class);
 
@@ -39,7 +38,7 @@ public class TestServlet extends HttpServlet {
     long startTime = System.nanoTime();
     List<String> returnedArray = port.sayHello(argArray);
     long endTime = System.nanoTime();
-    log.infof("Invocation time elapsed: %dms", ((endTime - startTime) / 1000000));
+    log.info("Invocation time elapsed: " + ((endTime - startTime) / 1000000) + "ms");
     log.info("Returned name: " + returnedArray.get(0));
     String result = "Success!";
     if(!returnedArray.get(0).equals("Hello, Kyle")) {

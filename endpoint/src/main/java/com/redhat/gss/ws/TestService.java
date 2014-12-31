@@ -15,7 +15,6 @@ import javax.jws.HandlerChain;
 
 @WebService(endpointInterface="com.redhat.gss.ws.HelloWorld")
 @EndpointConfig(configName="Custom Handlers", configFile="WEB-INF/jaxws-endpoint-config.xml")
-@Logging(pretty=true)
 @InInterceptors(interceptors={"com.redhat.gss.handler.TestCxfInterceptor"})
 public class TestService implements HelloWorld {
   private static Logger log = Logger.getLogger(TestService.class);
