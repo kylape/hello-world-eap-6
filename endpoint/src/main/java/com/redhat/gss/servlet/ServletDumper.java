@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileWriter;
-import javax.servlet.annotation.WebServlet;
 import org.jboss.logging.Logger;
 import java.io.InputStream;
 import java.io.BufferedReader;
@@ -16,7 +15,6 @@ import java.io.InputStreamReader;
  * This servlet will simply dump the contents of the HTTP POST body to
  * 'dump.txt' in the JVM working dir.
  */
-@WebServlet({"/dump"})
 public class ServletDumper extends HttpServlet {
   private static Logger log = Logger.getLogger(ServletDumper.class);
 

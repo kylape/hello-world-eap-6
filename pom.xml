@@ -10,28 +10,8 @@
   <properties>
     <version.eap6>6.3.0.GA</version.eap6>
   </properties>
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.jboss.bom</groupId>
-        <artifactId>eap6-supported-artifacts</artifactId>
-        <version>${version.eap6}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
   <modules>
     <module>endpoint</module>
     <module>client-endpoint</module>
   </modules>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.jboss.as.plugins</groupId>
-        <artifactId>jboss-as-maven-plugin</artifactId>
-        <version>7.5.Final</version>
-      </plugin>
-    </plugins>
-  </build>
 </project>
