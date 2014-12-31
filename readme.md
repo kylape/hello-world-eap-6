@@ -1,6 +1,15 @@
 #JAX-WS JBossWS-CXF "Hello World" Example
 
-Build and deploy: `mvn clean install; cd endpoint; mvn jboss-as:deploy`
-Test: `cd integration-tests; mvn install`
+To build: 
 
-Requires use of JBoss EAP 6 BOM (only available in 6.2+).
+    mvn clean install
+
+Should only use artifcats found on maven central.
+
+To deploy:
+
+    cp endpoint/target/hello-world.war client-endpoint/target/hello-world-client.war $JBOSS_HOME/server/default/deploy
+
+To test: 
+
+    curl http://localhost:8080/hello-world-client/client
