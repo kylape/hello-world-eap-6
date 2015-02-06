@@ -17,6 +17,9 @@ import org.apache.cxf.endpoint.Endpoint;
 import org.apache.cxf.frontend.ClientProxy;
 import org.jboss.logging.Logger;
 import java.io.OutputStream;
+import javax.xml.ws.Response;
+import javax.xml.ws.AsyncHandler;
+import java.util.concurrent.Future;
 
 @WebServlet({"/client"})
 public class TestServlet extends HttpServlet {
@@ -53,9 +56,16 @@ public class TestServlet extends HttpServlet {
 
     List<String> argArray = Collections.singletonList("Kyle");
     long startTime = System.nanoTime();
-    List<String> returnedArray = port.sayHello(argArray);
+    Future<?> future = port.sayHelloAsync(argArray);
     long endTime = System.nanoTime();
     log.infof("Invocation time elapsed: %dms", ((endTime - startTime) / 1000000));
+    List<String> returnedArray = null;
+    try {
+      SayHelloResponse r = (SayHelloResponse)future.get();
+      returnedArray = r.getReturn();
+    } catch(java.lang.Exception ie) {
+      log.error("Thread interrupted", ie);
+    }
     log.info("Returned name: " + returnedArray.get(0));
     String result = "Success!";
     if(!returnedArray.get(0).equals("Hello, Kyle")) {

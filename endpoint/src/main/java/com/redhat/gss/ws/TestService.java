@@ -21,6 +21,7 @@ public class TestService implements HelloWorld {
   private static Logger log = Logger.getLogger(TestService.class);
 
   public List<String> sayHello(List<String> names) throws Exception {
+    Thread.sleep(10000);
     List<String> greetings = new ArrayList<String>();
     for(String name : names) {
       greetings.add("Hello, " + name);

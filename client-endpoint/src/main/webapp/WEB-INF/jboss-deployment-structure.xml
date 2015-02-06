@@ -1,0 +1,7 @@
+<jboss-deployment-structure>
+  <deployment>
+    <dependencies>
+      <module name="org.jboss.ws.cxf.jbossws-cxf-client"/>
+    </dependencies>
+  </deployment>
+</jboss-deployment-structure>
