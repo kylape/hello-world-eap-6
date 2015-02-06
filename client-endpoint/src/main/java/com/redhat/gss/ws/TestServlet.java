@@ -20,20 +20,36 @@ import java.io.OutputStream;
 
 @WebServlet({"/client"})
 public class TestServlet extends HttpServlet {
+  private static URL wsdl = null;
+  private static QName serviceNS = new QName("http://ws.gss.redhat.com/", "TestServiceService");
   private static Logger log = Logger.getLogger(TestServlet.class);
+  private static Service service = null;
+
+  static {
+    try {
+      wsdl = new URL("http://localhost:8080/hello-world/TestService?wsdl");
+    } catch(java.lang.Exception e) {
+      //ignore
+    }
+  }
 
   @Override
   public void init() {
+    synchronized(TestServlet.class) {
+      if(service == null) {
+        service = Service.create(wsdl, serviceNS);
+      }
+    }
   }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-    URL wsdl        = new URL("http://localhost:8080/hello-world/TestService?wsdl");
-    QName serviceNS = new QName("http://ws.gss.redhat.com/", "TestServiceService");
     QName portNS    = new QName("http://ws.gss.redhat.com/", "TestServicePort");
 
-    Service service = Service.create(wsdl, serviceNS);
-    HelloWorld port = service.getPort(portNS, HelloWorld.class);
+    HelloWorld port = null;
+    synchronized(service) {
+      port = service.getPort(HelloWorld.class);
+    }
 
     List<String> argArray = Collections.singletonList("Kyle");
     long startTime = System.nanoTime();
